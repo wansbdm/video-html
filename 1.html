@@ -4,15 +4,29 @@
     <meta charset="UTF-8">
     <title>成语展示页面</title>
     <style>
-        body {
+        body, html {
+            height: 100%;
+            margin: 0;
             font-family: Arial, sans-serif;
             text-align: center;
-            margin-top: 50px;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #000; /* 可以根据需要设置背景颜色 */
+            background-image: url('your-background-image.jpg'); /* 如果需要背景图片 */
+            background-size: cover;
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
         }
 
         h1 {
             color: #333;
             margin-bottom: 20px;
+            position: relative;
+            z-index: 10; /* 确保标题在粒子背景之上 */
         }
 
         h1::after {
@@ -26,6 +40,8 @@
             list-style-type: none;
             padding: 0;
             margin-bottom: 20px;
+            position: relative;
+            z-index: 10; /* 确保列表在粒子背景之上 */
         }
 
         li {
@@ -38,10 +54,15 @@
             display: block;
             margin: 0 auto;
             border: 1px solid #ccc;
+            position: relative;
+            z-index: 10; /* 确保视频在粒子背景之上 */
         }
     </style>
+    <!-- 引入 particles.js 库 -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
+    <div id="particles-js"></div> <!-- 粒子背景容器 -->
     <h1>翩若惊鸿 婉若游龙</h1>
     <ul>
         <li>形容一个女子的身姿非常轻盈、优雅，就像惊飞的鸿雁那样轻盈飘逸，又像是游动中的蛟龙那样柔韧灵动。</li>
@@ -50,5 +71,124 @@
         <source src="翩若惊鸿.mp4" type="video/mp4">
         您的浏览器不支持视频标签。
     </video>
+    <script>
+        // 初始化粒子背景
+        particlesJS("particles-js", {
+            particles: {
+                number: {
+                    value: 120,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: "#ffffff"
+                },
+                shape: {
+                    type: "circle",
+                    stroke: {
+                        width: 0,
+                        color: "#000000"
+                    },
+                    polygon: {
+                        nb_sides: 5
+                    },
+                    image: {
+                        src: "img/github.svg",
+                        width: 100,
+                        height: 100
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: false,
+                    anim: {
+                        enable: false,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 1,
+                    random: true,
+                    anim: {
+                        enable: false,
+                        speed: 20,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 40,
+                    color: "#fff",
+                    opacity: 1,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 3,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "grab"
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 120,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    bubble: {
+                        distance: 400,
+                        size: 40,
+                        duration: 2,
+                        opacity: 8,
+                        speed: 3
+                    },
+                    repulse: {
+                        distance: 300
+                    },
+                    push: {
+                        particles_nb: 4
+                    },
+                    remove: {
+                        particles_nb: 2
+                    }
+                }
+            },
+            retina_detect: true,
+            config_demo: {
+                hide_card: false,
+                background_color: "#b61924",
+                background_image: "",
+                background_position: "50% 50%",
+                background_repeat: "no-repeat",
+                background_size: "cover"
+            }
+        });
+    </script>
 </body>
 </html>
